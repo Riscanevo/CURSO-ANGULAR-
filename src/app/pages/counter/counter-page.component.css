@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+h1{
+  color: blue;
+}
+button  {
+  padding: 5px;
+  margin:5px;
+  width: 75px;
+}
+

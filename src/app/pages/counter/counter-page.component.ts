@@ -31,5 +31,6 @@ increaseBy(value: number){
 resetCounter(){
   this.counter = 10;
   this.counterSignal.set(10);
+    
 }
 }

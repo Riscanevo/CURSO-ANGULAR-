@@ -1,24 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   templateUrl : './hero-page.component.html',
 })
 export class HeroPageComponent {
-  name (){
-    throw new Error('Method not implemented.');
-  }
-  age (){
-    throw new Error('Method not implemented.');
 
-  }
+  name = signal('Ironman');
+  age = signal(45);
+
   getHeroDescription(){
-    throw new Error('Method not implemented.');
+    return`${ this.name()} - ${ this.age()}`;
 
   }
   changeHero(){
-    throw new Error('Method not implemented.');
+    this.name.set('Spiderman');
+    this.age.update( value => value + 1);
+  }
+  changeAge(){
+    this.age.set(60);
   }
   resetForm(){
-    throw new Error('Method not implemented.');
+    this.name.set('Ironman');
+    this.age.set(22);
   }
 }

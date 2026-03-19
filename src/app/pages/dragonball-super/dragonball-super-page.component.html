@@ -2,16 +2,36 @@
 <hr />
 <section class="row">
   <div class="col-12 col-sm-6">
-    <h3>Agregar:</h3>
-    <input type="text" class="form-control" placeholder="Nombre " />
-    <input type="text" class="form-control mt-2" placeholder="Poder " />
-    <button class="btn btn-primary mt-2">Agregar</button>
+    <h3>Agregar Guerrero:</h3>
+
+    <label for="txtName" class="form-label">Nombre</label>
+    <input
+      id="txtName"
+      type="text"
+      class="form-control"
+      placeholder="Nombre del guerrero"
+      [value]="name()"
+      (input)="name.set(txtName.value)"
+      #txtName
+    />
+
+    <label for="txtPower" class="form-label mt-2">Poder</label>
+    <input
+      id="txtPower"
+      type="number"
+      class="form-control"
+      placeholder="Nivel de poder"
+      [value]="power()"
+      (input)="power.set(+txtPower.value)"
+      #txtPower
+    />
+
+    <button type="button" class="btn btn-primary mt-3" (click)="addCharacter()">
+      Agregar
+    </button>
   </div>
+
   <div class="col-12 col-sm-6">
-
-    <dragonball-character-list/>
-
-
-    
+    <dragonball-character-list [characters]="characters()" />
   </div>
 </section>

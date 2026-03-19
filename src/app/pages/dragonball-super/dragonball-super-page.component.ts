@@ -1,42 +1,39 @@
-  import { Component, signal } from '@angular/core';
-import { CharacterList } from "../../components/dragonball/character-list/character-list";
-  interface character {
-    id: number;
-    name: string;
-    power: number;
-  }
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { CharacterListComponent } from '../../components/dragonball/character-list/character-list';
+import { Character } from '../../interfaces/character.interface';
 
-  @Component({
-    templateUrl: './dragonball-super-page.component.html',
-    selector: 'dragonball-super-page',
-    imports: [CharacterList],
-  })
+@Component({
+  selector: 'dragonball-super-page',
+  templateUrl: './dragonball-super-page.component.html',
+  imports: [CharacterListComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+export class DragonBallSuperPageComponent {
+  name = signal('');
+  power = signal(0);
 
-  export class DragonBallSuperPageComponent {
-    name = signal('');
-    power = signal(0);
+  characters = signal<Character[]>([
+    { id: 1, name: 'Goku', power: 9001 },
+    { id: 2, name: 'Vegeta', power: 8500 },
+  ]);
 
-    characters = signal<character[]>([
-      { id: 1, name: 'Goku', power: 9001 },
-      { id: 2, name: 'Vegeta', power: 8500 },
-
-    ]);
-
-
-  addCharacter(){
-    if (!this.name() || !this.power() || this.power() <= 0) {
+  addCharacter(): void {
+    if (!this.name() || this.power() <= 0) {
       return;
     }
-    const newCharacter: character = {
-      id: this.characters().length + 1,
+
+    const newCharacter: Character = {
+      id: Date.now(),
       name: this.name(),
       power: this.power(),
     };
+
     this.characters.update((list) => [...list, newCharacter]);
     this.resetFields();
   }
-  resetFields(){
+
+  resetFields(): void {
     this.name.set('');
     this.power.set(0);
   }
-  }
+}

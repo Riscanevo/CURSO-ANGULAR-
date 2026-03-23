@@ -11,7 +11,7 @@ changeDetection: ChangeDetectionStrategy.OnPush,
 
 
 export class CounterPageComponent {
-counter = 10;
+counterValue = 10;
 counterSignal = signal(10);
 
 constructor() {
@@ -23,13 +23,12 @@ constructor() {
 
 
 
-increaseBy(value: number){
-  this.counter += value;
-  // this.counterSignal.update(current => current + value);
-  this.counterSignal.update(current => current + value);
+increaseBy(amount: number){
+  this.counterValue += amount;
+  this.counterSignal.update(current => current + amount);
 }
 resetCounter(){
-  this.counter = 10;
+  this.counterValue = 10;
   this.counterSignal.set(10);
     
 }

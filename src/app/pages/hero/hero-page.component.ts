@@ -5,22 +5,22 @@ import { Component, signal } from '@angular/core';
 })
 export class HeroPageComponent {
 
-  name = signal('Ironman');
-  age = signal(45);
+  heroName = signal('Ironman');
+  heroAge = signal(45);
 
   getHeroDescription(){
-    return`${ this.name()} - ${ this.age()}`;
+    return `${ this.heroName()} - ${ this.heroAge()}`;
 
   }
-  changeHero(){
-    this.name.set('Spiderman');
-    this.age.update( value => value + 1);
+  updateHero(){
+    this.heroName.set('Spiderman');
+    this.heroAge.update( currentAge => currentAge + 1);
   }
-  changeAge(){
-    this.age.set(60);
+  updateHeroAge(){
+    this.heroAge.set(60);
   }
-  resetForm(){
-    this.name.set('Ironman');
-    this.age.set(22);
+  resetHeroForm(){
+    this.heroName.set('Ironman');
+    this.heroAge.set(22);
   }
 }
